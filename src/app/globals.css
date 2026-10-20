@@ -236,17 +236,13 @@ svg {
   min-width: max-content;
 }
 
-.brand-monogram {
-  width: 45px;
-  aspect-ratio: 1;
-  display: grid;
-  place-items: center;
-  color: var(--white);
-  background: var(--navy);
-  font-size: 0.95rem;
-  font-weight: 850;
-  letter-spacing: -0.04em;
-  clip-path: polygon(0 0, 100% 0, 100% 78%, 78% 100%, 0 100%);
+.brand-logo {
+  width: 58px;
+  height: 58px;
+  display: block;
+  object-fit: contain;
+  background: var(--white);
+  border: 1px solid var(--navy);
 }
 
 .brand-name {
@@ -266,11 +262,6 @@ svg {
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.07em;
-}
-
-.brand-mark[data-inverted="true"] .brand-monogram {
-  color: var(--navy);
-  background: var(--brass);
 }
 
 .brand-mark[data-inverted="true"] .brand-name strong {

@@ -6,7 +6,7 @@ import { PrimaryNav } from "./primary-nav";
 export function BrandMark({ inverted = false }: { inverted?: boolean }) {
   return (
     <Link className="brand-mark" data-inverted={inverted} href="/">
-      <span className="brand-monogram" aria-hidden="true">MB</span>
+      <img className="brand-logo" src="/logo.png" alt="" width={58} height={58} />
       <span className="brand-name">
         <strong>MB Cleaning</strong>
         <small>Construction Cleaning</small>

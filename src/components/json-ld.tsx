@@ -33,6 +33,7 @@ export function BusinessJsonLd() {
     name: siteConfig.name,
     description: siteConfig.description,
     url: siteConfig.url,
+    logo: absoluteUrl("/logo.png"),
     areaServed,
     hasOfferCatalog: offerCatalog,
     ...(siteConfig.phone ? { telephone: siteConfig.phone } : {}),
