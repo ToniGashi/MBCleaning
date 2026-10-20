@@ -7,6 +7,7 @@ export const siteConfig = {
   ownership,
   description: `${ownership} Construction cleaning for builders in Charleston, Summerville, and the South Carolina Lowcountry.`,
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.mb.cleaning",
+  googleTagId: "G-WPFECZHR2Y",
   phone: process.env.NEXT_PUBLIC_PHONE ?? "+18434696373",
   phoneDisplay: process.env.NEXT_PUBLIC_PHONE_DISPLAY ?? "(843) 469-6373",
   email: process.env.NEXT_PUBLIC_EMAIL ?? "",

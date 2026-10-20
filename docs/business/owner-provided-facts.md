@@ -13,6 +13,7 @@ Last updated: October 20, 2026
 - Ownership clarification (October 20, 2026): The owner said, “we are actuall an All american woman owned company. The women that own the company are american not the entire crew.” Later the same day: “the company is not all american but it is all ‘american women’ owned.” Public copy should say the company is owned by American women. Do not call the company or the crew All-American.
 - Current public phone and text number: **(843) 469-6373**
 - Website host (October 20, 2026): The owner said, “the actual host is mb.cleaning.” Later the same day they asked to set the public address to www. Public site URL: **https://www.mb.cleaning**
+- Google tag (October 20, 2026): measurement ID **G-WPFECZHR2Y**
 - Primary market: Charleston and Summerville, South Carolina, plus confirmed surrounding project areas
 - Service area (October 19, 2026): The owner asked to include the entire Lowcountry. Original wording: “include the entire lowcountry.” Public copy should treat the South Carolina Lowcountry as the area MB Cleaning works, with Charleston and Summerville still named as home bases.
 - Primary audience: Builders, superintendents, and general contractors

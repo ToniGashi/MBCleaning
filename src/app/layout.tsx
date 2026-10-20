@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import { BusinessJsonLd } from "@/components/json-ld";
 import { Footer, Header } from "@/components/site-chrome";
 import { siteConfig } from "@/lib/site";
@@ -65,6 +66,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       data-scroll-behavior="smooth"
     >
       <body>
+        <Script src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.googleTagId}`} />
+        <Script id="google-tag">{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${siteConfig.googleTagId}');
+        `}</Script>
         <a className="skip-link" href="#main-content">Skip to content</a>
         <BusinessJsonLd />
         <Header />
