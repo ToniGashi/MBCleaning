@@ -28,7 +28,7 @@ export function CommunityShowcase({ variant }: CommunityShowcaseProps) {
               <p className="eyebrow">Where we’ve worked</p>
               <h2 id={`community-${variant}-title`}>Neighborhoods we know well.</h2>
               <p className="community-note">
-                These names are communities we’ve worked in. The photos are public pictures of those
+                These names are communities we’ve worked in. The photos show the look of those
                 neighborhoods, until we can show photos from our own jobs.
               </p>
             </div>
@@ -48,16 +48,12 @@ export function CommunityShowcase({ variant }: CommunityShowcaseProps) {
               >
                 <Image
                   src={community.image}
-                  alt={`${community.name} in ${community.locality}`}
+                  alt={community.alt}
                   fill
-                  sizes={
-                    isHome
-                      ? "(max-width: 680px) 100vw, (max-width: 980px) 50vw, 33vw"
-                      : "(max-width: 680px) 100vw, (max-width: 980px) 50vw, 40vw"
-                  }
-                  quality={78}
+                  sizes="(max-width: 680px) 100vw, 800px"
+                  quality={90}
                 />
-                <span className="community-image-note">Public photo</span>
+                <span className="community-image-note">Neighborhood</span>
                 <figcaption>
                   <span className="community-index">
                     {String(index + 1).padStart(2, "0")}
@@ -73,7 +69,7 @@ export function CommunityShowcase({ variant }: CommunityShowcaseProps) {
 
           <div className="community-footer">
             <p>
-              Photos are public pictures of the neighborhoods, not from our jobs.
+              Photos show the look of the neighborhoods, not pictures from our jobs.
             </p>
             {isHome ? <TextLink href="/service-area">View all communities</TextLink> : null}
           </div>

@@ -1,15 +1,15 @@
 import Link from "next/link";
-import { navigation, siteConfig, smsHref, telHref } from "@/lib/site";
+import { siteConfig, smsHref, telHref } from "@/lib/site";
 import { MobileMenu } from "./mobile-menu";
-import { PrimaryNav } from "./primary-nav";
+import { SiteNav } from "./primary-nav";
 
 export function BrandMark({ inverted = false }: { inverted?: boolean }) {
   return (
     <Link className="brand-mark" data-inverted={inverted} href="/">
       <img className="brand-logo" src="/logo.png" alt="" width={58} height={58} />
       <span className="brand-name">
-        <strong>MB Cleaning</strong>
-        <small>Construction Cleaning</small>
+        <strong>{siteConfig.name}</strong>
+        <small>{siteConfig.descriptor}</small>
       </span>
     </Link>
   );
@@ -39,7 +39,7 @@ export function Header() {
     <header className="site-header">
       <div className="shell header-inner">
         <BrandMark />
-        <PrimaryNav />
+        <SiteNav label="Primary navigation" className="primary-nav" />
         <a className="header-cta" href={telHref()} aria-label={siteConfig.phone ? `Call ${siteConfig.phoneDisplay}` : undefined}>
           <span className="header-cta-full">{siteConfig.phoneDisplay || "Start a project"}</span>
           <span className="header-cta-short">{siteConfig.phone ? "Call" : "Start"}</span>
@@ -58,18 +58,12 @@ export function Footer() {
         <div>
           <BrandMark inverted />
           <p className="footer-statement">
-            All-American, woman-owned construction cleaning for new homes across the South Carolina Lowcountry.
+            {siteConfig.ownership} Construction cleaning for new homes across the {siteConfig.region}.
           </p>
         </div>
         <div>
           <p className="eyebrow">Navigate</p>
-          <nav className="footer-links" aria-label="Footer navigation">
-            {navigation.map((item) => (
-              <Link key={item.href} href={item.href}>
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+          <SiteNav label="Footer navigation" className="footer-links" />
         </div>
         <div>
           <p className="eyebrow">Service area</p>

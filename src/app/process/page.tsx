@@ -65,7 +65,7 @@ export default function ProcessPage() {
               <article className="process-detail" key={step.number}>
                 <span className="detail-number">{step.number}</span>
                 <div>
-                  <h2>{step.title}</h2>
+                  <h3>{step.title}</h3>
                   <p>{step.body}</p>
                 </div>
               </article>

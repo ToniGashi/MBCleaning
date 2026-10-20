@@ -4,7 +4,7 @@ import { ContactActions } from "@/components/site-chrome";
 import { mailHref, siteConfig, telHref } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Contact MB Cleaning",
+  title: "Contact",
   description:
     "Call or email MB Cleaning about construction cleaning in the South Carolina Lowcountry.",
   alternates: { canonical: "/contact" },

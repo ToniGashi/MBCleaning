@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.title,
-    template: "%s | MB Cleaning",
+    template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
@@ -31,7 +31,6 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
     url: "/",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: "MB Cleaning construction cleaning" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -69,7 +68,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <a className="skip-link" href="#main-content">Skip to content</a>
         <BusinessJsonLd />
         <Header />
-        <main id="main-content">{children}</main>
+        <main id="main-content" tabIndex={-1}>{children}</main>
         <Footer />
       </body>
     </html>

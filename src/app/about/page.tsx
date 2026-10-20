@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Callout, PageHero, SectionHeading } from "@/components/content";
-import { workPhotos } from "@/lib/site";
+import { siteConfig, workPhotos } from "@/lib/site";
+
+const description = `${siteConfig.ownership} Construction cleaning for builders in the ${siteConfig.region}.`;
 
 export const metadata: Metadata = {
-  title: "About MB Cleaning",
-  description:
-    "MB Cleaning is an All-American, woman-owned construction cleaning crew for builders in the South Carolina Lowcountry.",
+  title: "About",
+  description,
   alternates: { canonical: "/about" },
   openGraph: {
-    title: "About MB Cleaning",
-    description: "An All-American, woman-owned crew that cleans new homes for Lowcountry builders.",
+    title: "About",
+    description,
     url: "/about",
   },
 };
@@ -27,8 +28,8 @@ export default function AboutPage() {
     <>
       <PageHero
         eyebrow="About us"
-        title="All-American, woman-owned, and proud of the work."
-        intro="MB Cleaning is an All-American, woman-owned construction cleaning crew for builders across the South Carolina Lowcountry."
+        title="Owned by American women, and proud of the work."
+        intro={`${siteConfig.ownership} We clean new homes for builders across the ${siteConfig.region}.`}
         image={workPhotos.entry}
       />
       <section className="section">
@@ -56,7 +57,12 @@ export default function AboutPage() {
       <section className="section section-flush">
         <div className="shell">
           <figure className="quote-block">
-            <Image src={workPhotos.walkthrough.src} alt="" fill sizes="(max-width: 1240px) 100vw, 1180px" />
+            <Image
+              src={workPhotos.walkthrough.src}
+              alt={workPhotos.walkthrough.alt}
+              fill
+              sizes="(max-width: 1240px) 100vw, 1180px"
+            />
             <div className="quote-content">
               <p className="eyebrow">Our promise</p>
               <p className="promise-line">Ready for the next walkthrough.</p>

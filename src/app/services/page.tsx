@@ -109,7 +109,7 @@ export default function ServicesPage() {
                     {service.items.map((item) => <li key={item}>{item}</li>)}
                   </ul>
                   <div className="service-request">
-                    <TextLink href={mailHref(service.title)}>Email about this clean</TextLink>
+                    <TextLink href={mailHref(service.title)}>Email about a {service.title.toLowerCase()}</TextLink>
                   </div>
                 </div>
               </article>

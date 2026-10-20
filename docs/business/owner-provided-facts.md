@@ -2,16 +2,17 @@
 
 This is the permanent source of truth for information supplied directly by MB Cleaning’s owner. Update this file whenever the owner provides a new business fact. Do not replace owner-provided facts with assumptions or unrelated online listings.
 
-Last updated: October 19, 2026
+Last updated: October 20, 2026
 
 ## Business identity
 
 - Public brand name: **MB Cleaning**
 - Business type: Cleaning company with a focus on construction cleaning
-- Ownership: **American and woman-owned**
-- Owner emphasis (October 11, 2026): **“all american woman owned crew!”** — lead with
-  All-American, woman-owned crew language in public copy
+- Ownership: **owned by American women**. The company is not All-American. Every owner is an American woman. The crew is not part of that claim.
+- Owner emphasis (October 11, 2026): **“all american woman owned crew!”**
+- Ownership clarification (October 20, 2026): The owner said, “we are actuall an All american woman owned company. The women that own the company are american not the entire crew.” Later the same day: “the company is not all american but it is all ‘american women’ owned.” Public copy should say the company is owned by American women. Do not call the company or the crew All-American.
 - Current public phone and text number: **(843) 469-6373**
+- Website host (October 20, 2026): The owner said, “the actual host is mb.cleaning.” Later the same day they asked to set the public address to www. Public site URL: **https://www.mb.cleaning**
 - Primary market: Charleston and Summerville, South Carolina, plus confirmed surrounding project areas
 - Service area (October 19, 2026): The owner asked to include the entire Lowcountry. Original wording: “include the entire lowcountry.” Public copy should treat the South Carolina Lowcountry as the area MB Cleaning works, with Charleston and Summerville still named as home bases.
 - Primary audience: Builders, superintendents, and general contractors
@@ -28,6 +29,9 @@ Last updated: October 19, 2026
   them prominently in two places on the website.
 - Use temporary public community marketing photos for the neighborhood showcase until approved MB
   Cleaning project photography is available. Do not rely on AI-generated neighborhood exteriors.
+  Superseded for the showcase on October 20, 2026: the owner asked for a new photo of each
+  neighborhood that looks very similar to the picture already on the site. Those photos are in use
+  until real job photos exist. Do not label them as public photos or as MB Cleaning job photos.
 - Preferred motion style for the neighborhood showcase: refined reveals, hover depth, and graphic
   map/plan details rather than heavy cinematic effects.
 
@@ -95,6 +99,8 @@ These localities are based on public builder and listing pages. Keep the owner�
 
 On October 11, 2026 the owner asked to regenerate the neighborhood showcase images so they look much closer to the actual neighborhoods found online. AI-generated illustrations were rejected as looking fake. The showcase was then switched to public community marketing photos (builder/listing/community sites) as temporary placeholders, labeled as community photos, not MB Cleaning project photography. These should be replaced with owner-approved project photos when available.
 
+On October 20, 2026 the owner asked to take each current neighborhood photo and generate a new image that looks very similar, one image at a time. Original wording: “get the current images, and generate a new image one by one, which looks very similar to what currently is there.” Those generated photos now replace the public listing photos in the showcase. They are not MB Cleaning job photos and must not be labeled as public photos or job photos. The previous Carolina Bay file was a city skyline, so that one was not copied; the new picture is a Lowcountry street of porch houses beside a pond. Replace these with owner-approved project photos when available.
+
 ## Public footprint
 
 - An old public listing for “MB Cleaning Services” at 104 Magwood Drive with phone number
@@ -107,7 +113,6 @@ On October 11, 2026 the owner asked to regenerate the neighborhood showcase imag
 ## Information still needed
 
 - Current business email
-- Canonical website domain
 - Exact legal business name
 - Insurance and credential details approved for publication
 - Crew capacity and scheduling commitments

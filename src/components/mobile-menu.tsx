@@ -2,20 +2,26 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { mailHref, navigation, siteConfig, telHref } from "@/lib/site";
 
 export function MobileMenu() {
   const pathname = usePathname();
   const menuRef = useRef<HTMLDetailsElement>(null);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     menuRef.current?.removeAttribute("open");
+    setOpen(false);
   }, [pathname]);
 
   return (
-    <details className="mobile-menu" ref={menuRef}>
-      <summary aria-label="Open menu">
+    <details
+      className="mobile-menu"
+      ref={menuRef}
+      onToggle={(event) => setOpen(event.currentTarget.open)}
+    >
+      <summary aria-label={open ? "Close menu" : "Open menu"}>
         <span aria-hidden="true" />
       </summary>
       <nav className="mobile-menu-panel" aria-label="Mobile navigation">

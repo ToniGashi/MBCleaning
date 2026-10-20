@@ -1,8 +1,14 @@
-import type { LocalBusiness, OfferCatalog, Service, WithContext } from "schema-dts";
-import { absoluteUrl, serviceAreas, siteConfig } from "@/lib/site";
+import type { ImageObject, LocalBusiness, OfferCatalog, Service, WithContext } from "schema-dts";
+import { absoluteUrl, projectCommunities, serviceAreas, siteConfig, workPhotos } from "@/lib/site";
 
 function safeJsonLd(data: object) {
   return JSON.stringify(data).replace(/</g, "\\u003c");
+}
+
+function JsonLd({ data }: { data: object }) {
+  return (
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }} />
+  );
 }
 
 const areaServed = [
@@ -13,6 +19,20 @@ const areaServed = [
     name: area.name,
     containedInPlace: { "@type": "State" as const, name: "South Carolina" },
   })),
+];
+
+function imageObject(src: string, caption: string): ImageObject {
+  return {
+    "@type": "ImageObject",
+    contentUrl: absoluteUrl(src),
+    caption,
+  };
+}
+
+const businessImages: ImageObject[] = [
+  imageObject("/logo.png", "MB Cleaning logo, a mop cleaning dirty tiles to a shine"),
+  ...Object.values(workPhotos).map((photo) => imageObject(photo.src, photo.alt)),
+  ...projectCommunities.map((community) => imageObject(community.image, community.alt)),
 ];
 
 const offerCatalog: OfferCatalog = {
@@ -34,18 +54,14 @@ export function BusinessJsonLd() {
     description: siteConfig.description,
     url: siteConfig.url,
     logo: absoluteUrl("/logo.png"),
+    image: businessImages,
     areaServed,
     hasOfferCatalog: offerCatalog,
     ...(siteConfig.phone ? { telephone: siteConfig.phone } : {}),
     ...(siteConfig.email ? { email: siteConfig.email } : {}),
   };
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }}
-    />
-  );
+  return <JsonLd data={data} />;
 }
 
 export function ServiceJsonLd() {
@@ -54,8 +70,7 @@ export function ServiceJsonLd() {
     "@type": "Service",
     name: "Construction Cleaning",
     serviceType: "New construction cleaning",
-    description:
-      "Rough, final, and touch-up construction cleaning for homebuilders and general contractors in the South Carolina Lowcountry.",
+    description: `Rough, final, and touch-up construction cleaning for homebuilders and general contractors in the ${siteConfig.region}.`,
     provider: {
       "@type": "LocalBusiness",
       "@id": absoluteUrl("/#business"),
@@ -65,11 +80,6 @@ export function ServiceJsonLd() {
     url: absoluteUrl("/services"),
   };
 
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: safeJsonLd(data) }}
-    />
-  );
+  return <JsonLd data={data} />;
 }
 

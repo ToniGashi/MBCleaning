@@ -4,12 +4,11 @@ import Link from "next/link";
 import { CommunityShowcase } from "@/components/community-showcase";
 import { Callout, ProofBar, SectionHeading, TextLink } from "@/components/content";
 import { ContactActions } from "@/components/site-chrome";
-import { mailHref, workPhotos } from "@/lib/site";
+import { mailHref, siteConfig, workPhotos } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: { absolute: "Construction Cleaning in the SC Lowcountry | MB Cleaning" },
-  description:
-    "All-American, woman-owned construction cleaning for builders in Charleston, Summerville, and the South Carolina Lowcountry. Rough, final, and touch-up cleans around your schedule.",
+  title: { absolute: siteConfig.title },
+  description: siteConfig.description,
   alternates: { canonical: "/" },
   openGraph: {
     title: "Construction Cleaning in the South Carolina Lowcountry",
@@ -52,13 +51,13 @@ export default function Home() {
       <section className="hero">
         <div className="shell hero-grid">
           <div className="hero-copy">
-            <p className="eyebrow">Charleston · Summerville · <span className="nowrap">All-American</span> · Woman-owned</p>
+            <p className="eyebrow">Charleston · Summerville · <span className="nowrap">American-women-owned</span></p>
             <h1>
               New homes,
               <span> cleaned and ready.</span>
             </h1>
             <p className="hero-intro">
-              We’re an All-American, woman-owned crew that cleans new construction for builders
+              {siteConfig.ownership} We clean new construction for builders
               across the <Link href="/service-area">South Carolina Lowcountry</Link>, from Charleston
               and Summerville to the towns around them, and from the first rough clean to the last
               touch-up before your buyers walk in.
@@ -121,8 +120,8 @@ export default function Home() {
                   <h3>{phase.title}</h3>
                   <p>{phase.body}</p>
                   <div className="phase-actions">
-                    <TextLink href={phase.href}>What’s included</TextLink>
-                    <TextLink href={phase.requestHref}>Email about this clean</TextLink>
+                    <TextLink href={phase.href}>What’s included in a {phase.title.toLowerCase()}</TextLink>
+                    <TextLink href={phase.requestHref}>Email about a {phase.title.toLowerCase()}</TextLink>
                   </div>
                 </div>
               </article>

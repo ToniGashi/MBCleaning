@@ -34,7 +34,7 @@ export default function ServiceAreaPage() {
           <div className="area-list">
             {serviceAreas.map((area) => (
               <article key={area.name}>
-                <h2>{area.name}</h2>
+                <h3>{area.name}</h3>
                 <p>{area.summary}</p>
               </article>
             ))}
