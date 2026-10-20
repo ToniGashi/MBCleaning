@@ -61,7 +61,7 @@ export default function OpenGraphImage() {
           </div>
           <div style={{ maxWidth: 930, display: "flex", flexDirection: "column", gap: 24 }}>
             <div style={{ color: "#f1cc76", fontSize: 18, letterSpacing: 2 }}>
-              CHARLESTON · SUMMERVILLE · LOWCOUNTRY
+              SOUTH CAROLINA LOWCOUNTRY
             </div>
             <div style={{ fontSize: 70, lineHeight: 1, fontWeight: 760, letterSpacing: -3 }}>
               Construction cleaning built around your schedule.

@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { CommunityShowcase } from "@/components/community-showcase";
 import { Callout, ProofBar, SectionHeading, TextLink } from "@/components/content";
 import { ContactActions } from "@/components/site-chrome";
 import { workPhotos } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: { absolute: "Construction Cleaning in Charleston & Summerville | MB Cleaning" },
+  title: { absolute: "Construction Cleaning in the SC Lowcountry | MB Cleaning" },
   description:
-    "MB Cleaning provides rough, final, and touch-up construction cleaning built around builder schedules in Charleston and Summerville, SC.",
+    "All-American, woman-owned construction cleaning for builders in Charleston, Summerville, and the South Carolina Lowcountry. Rough, final, and touch-up cleans around your schedule.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Construction Cleaning Built Around Your Schedule",
+    title: "Construction Cleaning in the South Carolina Lowcountry",
     description:
-      "Phased construction cleaning for Charleston-area builders and general contractors.",
+      "Rough, final, and touch-up construction cleaning for Lowcountry builders and general contractors.",
     url: "/",
   },
 };
@@ -24,6 +25,7 @@ const phases = [
     title: "Rough clean",
     body: "Once drywall and trim are in, we clear out the dust and debris so finish work can start clean.",
     href: "/services#rough",
+    requestHref: "/contact?phase=rough",
     photo: workPhotos.rough,
   },
   {
@@ -31,6 +33,7 @@ const phases = [
     title: "Final clean",
     body: "The detailed clean before inspection and closing: counters, cabinets, glass, fixtures, and floors.",
     href: "/services#final",
+    requestHref: "/contact?phase=final",
     photo: workPhotos.kitchen,
   },
   {
@@ -38,6 +41,7 @@ const phases = [
     title: "Touch-up clean",
     body: "After punch-list repairs, we come back for the dust and smudges so the home looks right on walkthrough day.",
     href: "/services#touch-up",
+    requestHref: "/contact?phase=touch-up",
     photo: workPhotos.windows,
   },
 ];
@@ -55,8 +59,9 @@ export default function Home() {
             </h1>
             <p className="hero-intro">
               We’re an All-American, woman-owned crew that cleans new construction for builders
-              across Charleston and Summerville, from the first rough clean to the last touch-up
-              before your buyers walk in.
+              across the <Link href="/service-area">South Carolina Lowcountry</Link>, from Charleston
+              and Summerville to the towns around them, and from the first rough clean to the last
+              touch-up before your buyers walk in.
             </p>
             <ContactActions />
             <p className="hero-note">Working with builders and superintendents across the Lowcountry.</p>
@@ -72,10 +77,10 @@ export default function Home() {
               />
               <span className="hero-image-note">Illustration</span>
             </div>
-            <div className="hero-checklist" aria-label="Example cleaning checklist">
+            <div className="hero-checklist" aria-label="A typical home during walkthrough week">
               <p className="hero-checklist-title">
-                <span>This home</span>
-                <span>Status</span>
+                <span>A typical home</span>
+                <span>Walkthrough week</span>
               </p>
               <ul>
                 <li data-state="done">Rough clean</li>
@@ -115,7 +120,10 @@ export default function Home() {
                   <span className="phase-number">{phase.number}</span>
                   <h3>{phase.title}</h3>
                   <p>{phase.body}</p>
-                  <TextLink href={phase.href}>What’s included</TextLink>
+                  <div className="phase-actions">
+                    <TextLink href={phase.href}>What’s included</TextLink>
+                    <TextLink href={phase.requestHref}>Request this clean</TextLink>
+                  </div>
                 </div>
               </article>
             ))}

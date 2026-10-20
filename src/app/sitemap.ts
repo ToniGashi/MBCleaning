@@ -13,7 +13,7 @@ const routes = [
 export default function sitemap(): MetadataRoute.Sitemap {
   return routes.map(({ path, priority, changeFrequency }) => ({
     url: absoluteUrl(path),
-    lastModified: new Date("2026-10-11"),
+    lastModified: new Date("2026-10-19"),
     changeFrequency,
     priority,
   }));

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { navigation, siteConfig, smsHref, telHref } from "@/lib/site";
 import { MobileMenu } from "./mobile-menu";
+import { PrimaryNav } from "./primary-nav";
 
 export function BrandMark({ inverted = false }: { inverted?: boolean }) {
   return (
@@ -38,13 +39,7 @@ export function Header() {
     <header className="site-header">
       <div className="shell header-inner">
         <BrandMark />
-        <nav className="primary-nav" aria-label="Primary navigation">
-          {navigation.map((item) => (
-            <Link key={item.href} href={item.href}>
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+        <PrimaryNav />
         <a className="header-cta" href={telHref()}>
           {siteConfig.phoneDisplay || "Start a project"}
           <ArrowIcon />
@@ -77,8 +72,8 @@ export function Footer() {
         </div>
         <div>
           <p className="eyebrow">Service area</p>
-          <p>Charleston &amp; Summerville</p>
-          <p>South Carolina Lowcountry</p>
+          <p>Construction cleaning in the South Carolina Lowcountry.</p>
+          <p>Charleston, Summerville, and nearby towns.</p>
           <Link className="text-link light" href="/service-area">
             View coverage <ArrowIcon />
           </Link>

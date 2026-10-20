@@ -4,11 +4,11 @@ import { Callout, PageHero, ProcessCycle, TextLink } from "@/components/content"
 export const metadata: Metadata = {
   title: "Our Construction Cleaning Process",
   description:
-    "See how MB Cleaning plans, schedules, cleans, and checks each new home for Charleston-area builders.",
+    "See how MB Cleaning plans, schedules, cleans, and checks each new home for builders in the South Carolina Lowcountry.",
   alternates: { canonical: "/process" },
   openGraph: {
     title: "How MB Cleaning Works",
-    description: "From the first call to the walkthrough: plan, schedule, clean, and check.",
+    description: "From the first call to the walkthrough for South Carolina Lowcountry builders.",
     url: "/process",
   },
 };
@@ -50,7 +50,7 @@ export default function ProcessPage() {
       <PageHero
         eyebrow="How it works"
         title="Easy to schedule. Easy to work with."
-        intro="Here’s what working with us looks like, from your first call to the homeowner walkthrough."
+        intro="Here’s what working with us looks like for Lowcountry builders, from your first call to the homeowner walkthrough."
         media={<ProcessCycle />}
       />
       <section className="section">

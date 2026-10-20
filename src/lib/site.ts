@@ -1,23 +1,54 @@
 export const siteConfig = {
   name: "MB Cleaning",
   descriptor: "Construction Cleaning",
-  title: "MB Cleaning | Construction Cleaning in Charleston & Summerville",
+  title: "Construction Cleaning in the SC Lowcountry | MB Cleaning",
   description:
-    "All-American, woman-owned construction cleaning for Charleston-area builders and general contractors. Rough, final, and touch-up support built around the schedule.",
+    "All-American, woman-owned construction cleaning for builders in Charleston, Summerville, and the South Carolina Lowcountry. Rough, final, and touch-up cleans around your schedule.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com",
   phone: process.env.NEXT_PUBLIC_PHONE ?? "+18434696373",
   phoneDisplay: process.env.NEXT_PUBLIC_PHONE_DISPLAY ?? "(843) 469-6373",
   email: process.env.NEXT_PUBLIC_EMAIL ?? "",
-  region: "Charleston & Summerville, South Carolina",
-  areas: [
-    "Charleston",
-    "Summerville",
-    "North Charleston",
-    "Goose Creek",
-    "Moncks Corner",
-    "Ridgeville",
-  ],
+  region: "South Carolina Lowcountry",
 } as const;
+
+export const serviceAreas = [
+  {
+    name: "Charleston",
+    summary: "One of our home bases, with work in new communities across the area, including Carolina Bay.",
+  },
+  {
+    name: "Summerville",
+    summary: "Our other home base, including Wisteria at Cane Bay and The Meadows.",
+  },
+  {
+    name: "North Charleston",
+    summary: "New construction in the area, including Coosaw Creek.",
+  },
+  {
+    name: "Goose Creek",
+    summary: "New homes in the area, including The Landings at Montague.",
+  },
+  {
+    name: "Moncks Corner",
+    summary: "New construction in the area, including Oakley Pointe and Strawberry Lane.",
+  },
+  {
+    name: "Ridgeville",
+    summary: "New communities in the area, including Parker’s Preserve and Timothy Lakes.",
+  },
+  {
+    name: "Johns Island",
+    summary: "New homes in the area, including Swygerts Landing.",
+  },
+  {
+    name: "Ladson",
+    summary: "New homes in the area, including Grand Oaks Preserve.",
+  },
+  {
+    name: "Daniel Island",
+    summary: "New homes in the area, including Nowell.",
+  },
+] as const;
 
 export const navigation = [
   { href: "/services", label: "Services" },
@@ -27,8 +58,22 @@ export const navigation = [
   { href: "/contact", label: "Contact" },
 ] as const;
 
-const representativeAlt =
-  "Public community marketing photo used as a placeholder; not an MB Cleaning project photograph.";
+export const inquiryPhases = [
+  { slug: "rough", label: "Rough clean" },
+  { slug: "final", label: "Final clean" },
+  { slug: "touch-up", label: "Touch-up clean" },
+  { slug: "more", label: "More than one" },
+  { slug: "unsure", label: "Not sure yet" },
+] as const;
+
+export function requestedCleanLabel(slug: string | undefined) {
+  const match = inquiryPhases.find(
+    (phase) =>
+      phase.slug === slug &&
+      (phase.slug === "rough" || phase.slug === "final" || phase.slug === "touch-up"),
+  );
+  return match?.label ?? "";
+}
 
 export const workPhotos = {
   kitchen: {
@@ -62,84 +107,72 @@ export const projectCommunities = [
     name: "Parker’s Preserve",
     locality: "Ridgeville",
     image: "/images/communities/parkers-preserve-v2.webp",
-    alt: representativeAlt,
     featured: true,
   },
   {
     name: "Oakley Pointe",
     locality: "Moncks Corner",
     image: "/images/communities/oakley-pointe-v2.webp",
-    alt: representativeAlt,
     featured: true,
   },
   {
     name: "Coosaw Creek",
     locality: "North Charleston",
     image: "/images/communities/coosaw-creek-v2.webp",
-    alt: representativeAlt,
     featured: true,
   },
   {
     name: "Swygerts Landing",
     locality: "Johns Island",
     image: "/images/communities/swygerts-landing-v2.webp",
-    alt: representativeAlt,
     featured: false,
   },
   {
     name: "Grand Oaks Preserve",
     locality: "Ladson",
     image: "/images/communities/grand-oaks-preserve-v2.webp",
-    alt: representativeAlt,
     featured: false,
   },
   {
     name: "Carolina Bay",
     locality: "Charleston",
     image: "/images/communities/carolina-bay-v2.webp",
-    alt: representativeAlt,
     featured: false,
   },
   {
     name: "Timothy Lakes",
     locality: "Ridgeville",
     image: "/images/communities/timothy-lakes-v2.webp",
-    alt: representativeAlt,
     featured: false,
   },
   {
     name: "Strawberry Lane",
     locality: "Moncks Corner",
     image: "/images/communities/strawberry-lane-v2.webp",
-    alt: representativeAlt,
     featured: false,
   },
   {
     name: "The Meadows",
     locality: "Summerville",
     image: "/images/communities/the-meadows-v2.webp",
-    alt: representativeAlt,
     featured: false,
   },
   {
     name: "Wisteria at Cane Bay",
     locality: "Summerville",
     image: "/images/communities/wisteria-at-cane-bay-v2.webp",
-    alt: representativeAlt,
     featured: true,
   },
   {
     name: "The Landings at Montague",
     locality: "Goose Creek",
     image: "/images/communities/landings-at-montague-v2.webp",
-    alt: representativeAlt,
     featured: true,
   },
   {
     name: "Nowell",
     locality: "Daniel Island",
     image: "/images/communities/nowell-v2.webp",
-    alt: representativeAlt,
     featured: true,
   },
 ] as const;

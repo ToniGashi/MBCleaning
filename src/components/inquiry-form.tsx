@@ -1,14 +1,31 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
+import { inquiryPhases } from "@/lib/site";
 
-type Status = { state: "idle" | "sending" | "success" | "error"; message: string };
+type Status = { state: "idle" | "sending" | "error"; message: string };
 
-export function InquiryForm() {
-  const [status, setStatus] = useState<Status>({
-    state: "idle",
-    message: "Fields marked * are required.",
-  });
+type Confirmation = {
+  phase: string;
+  location: string;
+  phone: string;
+};
+
+export function InquiryForm({ initialPhase = "" }: { initialPhase?: string }) {
+  const [status, setStatus] = useState<Status>({ state: "idle", message: "" });
+  const [phaseState, setPhaseState] = useState({ source: initialPhase, value: initialPhase });
+  const [confirmation, setConfirmation] = useState<Confirmation | null>(null);
+  const confirmationRef = useRef<HTMLHeadingElement>(null);
+
+  if (phaseState.source !== initialPhase) {
+    setPhaseState({ source: initialPhase, value: initialPhase });
+  }
+
+  const phase = phaseState.source === initialPhase ? phaseState.value : initialPhase;
+
+  useEffect(() => {
+    if (confirmation) confirmationRef.current?.focus();
+  }, [confirmation]);
 
   async function submitInquiry(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -29,11 +46,12 @@ export function InquiryForm() {
         throw new Error(result.message || "We could not send the inquiry.");
       }
 
-      form.reset();
-      setStatus({
-        state: "success",
-        message: "Thanks! We got your message and will be in touch soon.",
+      setConfirmation({
+        phase: String(data.phase ?? ""),
+        location: String(data.location ?? ""),
+        phone: String(data.phone ?? ""),
       });
+      setStatus({ state: "idle", message: "" });
     } catch (error) {
       setStatus({
         state: "error",
@@ -43,6 +61,28 @@ export function InquiryForm() {
             : "We could not send the inquiry. Please try again.",
       });
     }
+  }
+
+  function sendAnother() {
+    setConfirmation(null);
+    setPhaseState({ source: initialPhase, value: initialPhase });
+    setStatus({ state: "idle", message: "" });
+  }
+
+  if (confirmation) {
+    return (
+      <div className="inquiry-confirmation" id="inquiry">
+        <h3 ref={confirmationRef} tabIndex={-1}>
+          We got your message.
+        </h3>
+        <p>
+          We’ll call or text {confirmation.phone}. You asked about {confirmation.phase} in {confirmation.location}.
+        </p>
+        <button className="button button-primary" type="button" onClick={sendAnother}>
+          Send another message
+        </button>
+      </div>
+    );
   }
 
   return (
@@ -60,8 +100,8 @@ export function InquiryForm() {
         <input id="phone" name="phone" type="tel" autoComplete="tel" required />
       </div>
       <div className="field">
-        <label htmlFor="email">Email *</label>
-        <input id="email" name="email" type="email" autoComplete="email" required />
+        <label htmlFor="email">Email</label>
+        <input id="email" name="email" type="email" autoComplete="email" />
       </div>
       <div className="field">
         <label htmlFor="location">Where is the job? *</label>
@@ -69,31 +109,45 @@ export function InquiryForm() {
       </div>
       <div className="field">
         <label htmlFor="phase">Which clean do you need? *</label>
-        <select id="phase" name="phase" defaultValue="" required>
-          <option value="" disabled>Choose one</option>
-          <option>Rough clean</option>
-          <option>Final clean</option>
-          <option>Touch-up clean</option>
-          <option>More than one</option>
-          <option>Not sure yet</option>
+        <select
+          id="phase"
+          name="phase"
+          value={phase}
+          onChange={(event) => setPhaseState({ source: initialPhase, value: event.target.value })}
+          required
+        >
+          <option value="" disabled>
+            Choose one
+          </option>
+          {inquiryPhases.map((item) => (
+            <option key={item.slug} value={item.label}>
+              {item.label}
+            </option>
+          ))}
         </select>
       </div>
+      <div className="field">
+        <label htmlFor="homes">How many homes?</label>
+        <input id="homes" name="homes" autoComplete="off" />
+      </div>
+      <div className="field">
+        <label htmlFor="timing">When will they be ready?</label>
+        <input id="timing" name="timing" autoComplete="off" />
+      </div>
       <div className="field full">
-        <label htmlFor="message">Tell us about the homes *</label>
-        <textarea
-          id="message"
-          name="message"
-          placeholder="How many homes, what stage they’re in, and when they’ll be ready"
-          required
-        />
+        <label htmlFor="message">Anything else?</label>
+        <textarea id="message" name="message" />
       </div>
       <div className="field honeypot" aria-hidden="true">
         <label htmlFor="website">Website</label>
         <input id="website" name="website" tabIndex={-1} autoComplete="off" />
       </div>
       <div className="form-footer">
+        <p className="form-help">
+          Phone is enough for us to reply. Email, home count, and timing help if you have them.
+        </p>
         <p className="form-status" data-state={status.state} aria-live="polite">
-          {status.message}
+          {status.state === "sending" || status.state === "error" ? status.message : ""}
         </p>
         <button className="button button-primary" type="submit" disabled={status.state === "sending"}>
           {status.state === "sending" ? "Sending…" : "Send message"}
@@ -102,4 +156,3 @@ export function InquiryForm() {
     </form>
   );
 }
-

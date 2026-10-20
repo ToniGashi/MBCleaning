@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Callout, PageHero } from "@/components/content";
+import { Callout, PageHero, TextLink } from "@/components/content";
 import { ServiceJsonLd } from "@/components/json-ld";
 import { workPhotos } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Construction Cleaning Services",
+  title: "New Construction Cleaning",
   description:
-    "Rough, final, and touch-up construction cleaning for builders and general contractors in Charleston and Summerville, South Carolina.",
+    "Rough, final, and touch-up construction cleaning for builders and general contractors in the South Carolina Lowcountry.",
   alternates: { canonical: "/services" },
   openGraph: {
     title: "Construction Cleaning Services | MB Cleaning",
-    description: "Rough, final, and touch-up cleaning for new homes in Charleston and Summerville.",
+    description: "Rough, final, and touch-up cleaning for new homes in the South Carolina Lowcountry.",
     url: "/services",
   },
 };
@@ -74,13 +74,18 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Services"
         title="Three cleans, from dusty to move-in ready."
-        intro="Every new home goes through stages, and we clean at each one. We’re clear about what’s included, so there’s never any guessing."
+        intro="Every new home in the Lowcountry goes through stages, and we clean at each one. We’re clear about what’s included, so there’s never any guessing."
         image={workPhotos.film}
       />
       <section className="section">
         <div className="shell content-grid">
           <aside className="sticky-label">
             <p className="eyebrow">What’s included</p>
+            <nav className="service-jump" aria-label="Cleans">
+              <a href="#rough">Rough clean</a>
+              <a href="#final">Final clean</a>
+              <a href="#touch-up">Touch-up clean</a>
+            </nav>
             <p className="side-note">
               Every builder does things a little differently. We’ll match our checklist to yours.
             </p>
@@ -103,6 +108,9 @@ export default function ServicesPage() {
                   <ul className="check-list">
                     {service.items.map((item) => <li key={item}>{item}</li>)}
                   </ul>
+                  <div className="service-request">
+                    <TextLink href={`/contact?phase=${service.id}`}>Request this clean</TextLink>
+                  </div>
                 </div>
               </article>
             ))}

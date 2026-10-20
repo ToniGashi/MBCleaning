@@ -1,36 +1,27 @@
 import type { Metadata } from "next";
 import { CommunityShowcase } from "@/components/community-showcase";
 import { Callout, PageHero, SectionHeading } from "@/components/content";
-import { workPhotos } from "@/lib/site";
+import { serviceAreas, workPhotos } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Charleston & Summerville Service Area",
+  title: "Lowcountry Towns We Clean",
   description:
-    "Construction cleaning for builders in Charleston, Summerville, North Charleston, Goose Creek, Moncks Corner, Ridgeville, and nearby Lowcountry communities.",
+    "Construction cleaning for builders in Charleston, Summerville, Johns Island, Ladson, Daniel Island, and other South Carolina Lowcountry towns.",
   alternates: { canonical: "/service-area" },
   openGraph: {
-    title: "MB Cleaning Service Area",
-    description: "Construction cleaning across Charleston, Summerville, and nearby towns.",
+    title: "South Carolina Lowcountry Construction Cleaning",
+    description: "Construction cleaning across Charleston, Summerville, and nearby Lowcountry towns.",
     url: "/service-area",
   },
 };
-
-const areas = [
-  ["Charleston", "One of our home bases, with work in new communities across the area, including Carolina Bay."],
-  ["Summerville", "Our other home base, including Wisteria at Cane Bay and The Meadows."],
-  ["North Charleston", "New construction in the area, including Coosaw Creek."],
-  ["Goose Creek", "New homes in the area, including The Landings at Montague."],
-  ["Moncks Corner", "New construction in the area, including Oakley Pointe and Strawberry Lane."],
-  ["Ridgeville", "New communities in the area, including Parker’s Preserve and Timothy Lakes."],
-];
 
 export default function ServiceAreaPage() {
   return (
     <>
       <PageHero
         eyebrow="Service area"
-        title="Charleston, Summerville, and the towns around them."
-        intro="We’re based in the Lowcountry and clean new homes in communities all over the area. Not sure if we cover your job? Just ask."
+        title="Construction cleaning across the South Carolina Lowcountry."
+        intro="We clean new homes for builders in Charleston, Summerville, and the towns around them. Not sure if we cover your job? Just ask."
         image={workPhotos.windows}
       />
       <section className="section">
@@ -38,13 +29,13 @@ export default function ServiceAreaPage() {
           <SectionHeading
             eyebrow="Towns we cover"
             title="Where we work."
-            body="If your job is nearby but not listed here, call or text us. We’ll tell you honestly whether we can take it."
+            body="These are towns where we’ve worked. If your job is nearby but not listed here, call or text us. We’ll tell you honestly whether we can take it."
           />
           <div className="area-list">
-            {areas.map(([name, copy]) => (
-              <article key={name}>
-                <h2>{name}</h2>
-                <p>{copy}</p>
+            {serviceAreas.map((area) => (
+              <article key={area.name}>
+                <h2>{area.name}</h2>
+                <p>{area.summary}</p>
               </article>
             ))}
           </div>

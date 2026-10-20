@@ -27,6 +27,10 @@ export function CommunityShowcase({ variant }: CommunityShowcaseProps) {
             <div>
               <p className="eyebrow">Where we’ve worked</p>
               <h2 id={`community-${variant}-title`}>Neighborhoods we know well.</h2>
+              <p className="community-note">
+                These names are communities we’ve worked in. The photos are public pictures of those
+                neighborhoods, until we can show photos from our own jobs.
+              </p>
             </div>
             <div className="community-proof">
               <strong>12<span>+</span></strong>
@@ -44,7 +48,7 @@ export function CommunityShowcase({ variant }: CommunityShowcaseProps) {
               >
                 <Image
                   src={community.image}
-                  alt={`${community.name}: ${community.alt}`}
+                  alt={`${community.name} in ${community.locality}`}
                   fill
                   sizes={
                     isHome
@@ -53,7 +57,7 @@ export function CommunityShowcase({ variant }: CommunityShowcaseProps) {
                   }
                   quality={78}
                 />
-                <span className="community-image-note">Community photo</span>
+                <span className="community-image-note">Public photo</span>
                 <figcaption>
                   <span className="community-index">
                     {String(index + 1).padStart(2, "0")}
@@ -69,8 +73,7 @@ export function CommunityShowcase({ variant }: CommunityShowcaseProps) {
 
           <div className="community-footer">
             <p>
-              These are public community photos used as placeholders, not photos from our jobs.
-              We’ll replace them with MB Cleaning project photos over time.
+              Photos are public pictures of the neighborhoods, not from our jobs.
             </p>
             {isHome ? <TextLink href="/service-area">View all communities</TextLink> : null}
           </div>

@@ -6,7 +6,7 @@ import { workPhotos } from "@/lib/site";
 export const metadata: Metadata = {
   title: "About MB Cleaning",
   description:
-    "MB Cleaning is an All-American, woman-owned construction cleaning crew serving builders in Charleston and Summerville, South Carolina.",
+    "MB Cleaning is an All-American, woman-owned construction cleaning crew for builders in the South Carolina Lowcountry.",
   alternates: { canonical: "/about" },
   openGraph: {
     title: "About MB Cleaning",
@@ -28,7 +28,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About us"
         title="All-American, woman-owned, and proud of the work."
-        intro="MB Cleaning is an All-American, woman-owned crew that cleans new homes for builders across Charleston and Summerville."
+        intro="MB Cleaning is an All-American, woman-owned construction cleaning crew for builders across the South Carolina Lowcountry."
         image={workPhotos.entry}
       />
       <section className="section">
@@ -59,7 +59,7 @@ export default function AboutPage() {
             <Image src={workPhotos.walkthrough.src} alt="" fill sizes="(max-width: 1240px) 100vw, 1180px" />
             <div className="quote-content">
               <p className="eyebrow">Our promise</p>
-              <blockquote>“Ready for the next walkthrough.”</blockquote>
+              <p className="promise-line">Ready for the next walkthrough.</p>
               <figcaption>What we aim for in every home we clean.</figcaption>
             </div>
           </figure>

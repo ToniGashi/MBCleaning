@@ -1,28 +1,29 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { PageHero } from "@/components/content";
 import { InquiryForm } from "@/components/inquiry-form";
 import { ContactActions } from "@/components/site-chrome";
-import { siteConfig, telHref } from "@/lib/site";
+import { requestedCleanLabel, siteConfig, telHref } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact MB Cleaning",
   description:
-    "Call, text, or send project details to discuss construction cleaning in Charleston and Summerville, South Carolina.",
+    "Call, text, or send project details to discuss construction cleaning in the South Carolina Lowcountry.",
   alternates: { canonical: "/contact" },
   openGraph: {
     title: "Discuss a Construction Cleaning Project",
-    description: "Share the phase, location, and schedule with MB Cleaning.",
+    description: "Share the phase, location, and schedule for construction cleaning in the South Carolina Lowcountry.",
     url: "/contact",
   },
 };
 
-export default function ContactPage() {
+export default function ContactPage({ searchParams }: PageProps<"/contact">) {
   return (
     <>
       <PageHero
         eyebrow="Contact"
         title="Let’s get your homes ready."
-        intro="Calling or texting is the fastest way to reach us. You can also send the form below and we’ll get back to you."
+        intro="Calling or texting is the fastest way to reach us about construction cleaning in the South Carolina Lowcountry. You can also send the form below and we’ll get back to you."
       />
       <section className="section">
         <div className="shell contact-layout">
@@ -48,11 +49,24 @@ export default function ContactPage() {
             <h2 className="form-title">
               Ask for a quote or a site visit.
             </h2>
-            <InquiryForm />
+            <Suspense fallback={<InquiryForm />}>
+              <InquiryFormWithPhase searchParams={searchParams} />
+            </Suspense>
           </div>
         </div>
       </section>
     </>
   );
+}
+
+async function InquiryFormWithPhase({
+  searchParams,
+}: {
+  searchParams: PageProps<"/contact">["searchParams"];
+}) {
+  const params = await searchParams;
+  const slug = typeof params.phase === "string" ? params.phase : undefined;
+
+  return <InquiryForm initialPhase={requestedCleanLabel(slug)} />;
 }
 

@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
+import { inquiryPhases } from "@/lib/site";
 
-const requiredFields = ["name", "company", "phone", "email", "location", "phase", "message"] as const;
+const requiredFields = ["name", "company", "phone", "location", "phase"] as const;
+const optionalFields = ["email", "homes", "timing", "message"] as const;
+const allowedPhases = new Set<string>(inquiryPhases.map((phase) => phase.label));
 
 function clean(value: unknown, maxLength = 2_000) {
   return typeof value === "string" ? value.trim().slice(0, maxLength) : "";
@@ -19,16 +22,25 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: "Thanks. Your inquiry was received." });
   }
 
-  const inquiry = Object.fromEntries(
-    requiredFields.map((field) => [field, clean(body[field])]),
-  ) as Record<(typeof requiredFields)[number], string>;
+  const inquiry = {
+    ...Object.fromEntries(requiredFields.map((field) => [field, clean(body[field])])),
+    ...Object.fromEntries(optionalFields.map((field) => [field, clean(body[field])])),
+  } as Record<(typeof requiredFields)[number] | (typeof optionalFields)[number], string>;
 
   const missing = requiredFields.some((field) => !inquiry[field]);
-  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inquiry.email);
+  const phaseAllowed = allowedPhases.has(inquiry.phase);
+  const emailValid = inquiry.email === "" || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inquiry.email);
 
-  if (missing || !emailValid) {
+  if (missing || !phaseAllowed) {
     return NextResponse.json(
-      { message: "Complete every required field and use a valid email address." },
+      { message: "Complete every required field and choose a clean from the list." },
+      { status: 400 },
+    );
+  }
+
+  if (!emailValid) {
+    return NextResponse.json(
+      { message: "Use a valid email address, or leave email blank." },
       { status: 400 },
     );
   }
@@ -55,7 +67,7 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         source: "mb-cleaning-website",
         submittedAt: new Date().toISOString(),
-        ...inquiry,
+        ...Object.fromEntries(Object.entries(inquiry).filter(([, value]) => value !== "")),
       }),
       cache: "no-store",
     });
@@ -70,4 +82,3 @@ export async function POST(request: Request) {
 
   return NextResponse.json({ message: "Your inquiry was sent." });
 }
-
