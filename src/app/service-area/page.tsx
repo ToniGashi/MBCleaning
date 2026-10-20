@@ -6,11 +6,11 @@ import { serviceAreas, workPhotos } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Lowcountry Towns We Clean",
   description:
-    "Construction cleaning for builders in Charleston, Summerville, Johns Island, Ladson, Daniel Island, and other South Carolina Lowcountry towns.",
+    "Construction cleaning for builders across the entire South Carolina Lowcountry, including Charleston, Summerville, and the towns around them.",
   alternates: { canonical: "/service-area" },
   openGraph: {
     title: "South Carolina Lowcountry Construction Cleaning",
-    description: "Construction cleaning across Charleston, Summerville, and nearby Lowcountry towns.",
+    description: "Construction cleaning across the entire South Carolina Lowcountry.",
     url: "/service-area",
   },
 };
@@ -21,15 +21,15 @@ export default function ServiceAreaPage() {
       <PageHero
         eyebrow="Service area"
         title="Construction cleaning across the South Carolina Lowcountry."
-        intro="We clean new homes for builders in Charleston, Summerville, and the towns around them. Not sure if we cover your job? Just ask."
+        intro="We clean new homes for builders across the entire South Carolina Lowcountry. Charleston and Summerville are our home bases."
         image={workPhotos.windows}
       />
       <section className="section">
         <div className="shell">
           <SectionHeading
-            eyebrow="Towns we cover"
+            eyebrow="Communities we know"
             title="Where we work."
-            body="These are towns where we’ve worked. If your job is nearby but not listed here, call or text us. We’ll tell you honestly whether we can take it."
+            body="We serve the entire South Carolina Lowcountry. The towns below are communities we have already worked in."
           />
           <div className="area-list">
             {serviceAreas.map((area) => (
@@ -57,9 +57,9 @@ export default function ServiceAreaPage() {
         </div>
       </section>
       <Callout
-        eyebrow="Check your area"
-        title="Not sure if we cover your job?"
-        body="Text us the community or address and we’ll let you know."
+        eyebrow="Service area"
+        title="Jobs across the Lowcountry."
+        body="Text the community or address. If the job is in the Lowcountry, we can talk through the schedule."
       />
     </>
   );

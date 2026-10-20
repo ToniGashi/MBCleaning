@@ -4,7 +4,7 @@ import Link from "next/link";
 import { CommunityShowcase } from "@/components/community-showcase";
 import { Callout, ProofBar, SectionHeading, TextLink } from "@/components/content";
 import { ContactActions } from "@/components/site-chrome";
-import { workPhotos } from "@/lib/site";
+import { mailHref, workPhotos } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: { absolute: "Construction Cleaning in the SC Lowcountry | MB Cleaning" },
@@ -25,7 +25,7 @@ const phases = [
     title: "Rough clean",
     body: "Once drywall and trim are in, we clear out the dust and debris so finish work can start clean.",
     href: "/services#rough",
-    requestHref: "/contact?phase=rough",
+    requestHref: mailHref("Rough clean"),
     photo: workPhotos.rough,
   },
   {
@@ -33,7 +33,7 @@ const phases = [
     title: "Final clean",
     body: "The detailed clean before inspection and closing: counters, cabinets, glass, fixtures, and floors.",
     href: "/services#final",
-    requestHref: "/contact?phase=final",
+    requestHref: mailHref("Final clean"),
     photo: workPhotos.kitchen,
   },
   {
@@ -41,7 +41,7 @@ const phases = [
     title: "Touch-up clean",
     body: "After punch-list repairs, we come back for the dust and smudges so the home looks right on walkthrough day.",
     href: "/services#touch-up",
-    requestHref: "/contact?phase=touch-up",
+    requestHref: mailHref("Touch-up clean"),
     photo: workPhotos.windows,
   },
 ];
@@ -52,7 +52,7 @@ export default function Home() {
       <section className="hero">
         <div className="shell hero-grid">
           <div className="hero-copy">
-            <p className="eyebrow">Charleston · Summerville · All-American · Woman-owned</p>
+            <p className="eyebrow">Charleston · Summerville · <span className="nowrap">All-American</span> · Woman-owned</p>
             <h1>
               New homes,
               <span> cleaned and ready.</span>
@@ -122,7 +122,7 @@ export default function Home() {
                   <p>{phase.body}</p>
                   <div className="phase-actions">
                     <TextLink href={phase.href}>What’s included</TextLink>
-                    <TextLink href={phase.requestHref}>Request this clean</TextLink>
+                    <TextLink href={phase.requestHref}>Email about this clean</TextLink>
                   </div>
                 </div>
               </article>

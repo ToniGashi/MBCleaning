@@ -2,7 +2,7 @@
 
 This is the permanent source of truth for information supplied directly by MB Cleaning’s owner. Update this file whenever the owner provides a new business fact. Do not replace owner-provided facts with assumptions or unrelated online listings.
 
-Last updated: October 11, 2026
+Last updated: October 19, 2026
 
 ## Business identity
 
@@ -13,6 +13,7 @@ Last updated: October 11, 2026
   All-American, woman-owned crew language in public copy
 - Current public phone and text number: **(843) 469-6373**
 - Primary market: Charleston and Summerville, South Carolina, plus confirmed surrounding project areas
+- Service area (October 19, 2026): The owner asked to include the entire Lowcountry. Original wording: “include the entire lowcountry.” Public copy should treat the South Carolina Lowcountry as the area MB Cleaning works, with Charleston and Summerville still named as home bases.
 - Primary audience: Builders, superintendents, and general contractors
 - Growth goal: Expand MB Cleaning’s construction-cleaning work across the Charleston and Summerville area
 
@@ -108,7 +109,6 @@ On October 11, 2026 the owner asked to regenerate the neighborhood showcase imag
 - Current business email
 - Canonical website domain
 - Exact legal business name
-- Current service-area boundaries
 - Insurance and credential details approved for publication
 - Crew capacity and scheduling commitments
 - Current service inclusions and exclusions

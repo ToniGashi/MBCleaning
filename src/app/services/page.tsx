@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Callout, PageHero, TextLink } from "@/components/content";
 import { ServiceJsonLd } from "@/components/json-ld";
-import { workPhotos } from "@/lib/site";
+import { mailHref, workPhotos } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "New Construction Cleaning",
@@ -109,7 +109,7 @@ export default function ServicesPage() {
                     {service.items.map((item) => <li key={item}>{item}</li>)}
                   </ul>
                   <div className="service-request">
-                    <TextLink href={`/contact?phase=${service.id}`}>Request this clean</TextLink>
+                    <TextLink href={mailHref(service.title)}>Email about this clean</TextLink>
                   </div>
                 </div>
               </article>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Callout, PageHero, ProcessCycle, TextLink } from "@/components/content";
+import { mailHref } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Our Construction Cleaning Process",
@@ -80,7 +81,7 @@ export default function ProcessPage() {
             <p className="quote-prep-intro">
               Don’t have all of it yet? That’s fine. Call anyway and we’ll figure it out together.
             </p>
-            <TextLink href="/contact">Send us the details</TextLink>
+            <TextLink href={mailHref()}>Email the project</TextLink>
           </div>
           <ul className="prep-list">
             {quoteDetails.map(([title, detail]) => (

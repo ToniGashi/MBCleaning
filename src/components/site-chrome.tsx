@@ -40,8 +40,9 @@ export function Header() {
       <div className="shell header-inner">
         <BrandMark />
         <PrimaryNav />
-        <a className="header-cta" href={telHref()}>
-          {siteConfig.phoneDisplay || "Start a project"}
+        <a className="header-cta" href={telHref()} aria-label={siteConfig.phone ? `Call ${siteConfig.phoneDisplay}` : undefined}>
+          <span className="header-cta-full">{siteConfig.phoneDisplay || "Start a project"}</span>
+          <span className="header-cta-short">{siteConfig.phone ? "Call" : "Start"}</span>
           <ArrowIcon />
         </a>
         <MobileMenu />
@@ -57,7 +58,7 @@ export function Footer() {
         <div>
           <BrandMark inverted />
           <p className="footer-statement">
-            All-American, woman-owned construction cleaning for new homes in Charleston, Summerville, and the towns around them.
+            All-American, woman-owned construction cleaning for new homes across the South Carolina Lowcountry.
           </p>
         </div>
         <div>
@@ -72,8 +73,8 @@ export function Footer() {
         </div>
         <div>
           <p className="eyebrow">Service area</p>
-          <p>Construction cleaning in the South Carolina Lowcountry.</p>
-          <p>Charleston, Summerville, and nearby towns.</p>
+          <p>Construction cleaning across the entire South Carolina Lowcountry.</p>
+          <p>Charleston and Summerville are our home bases.</p>
           <Link className="text-link light" href="/service-area">
             View coverage <ArrowIcon />
           </Link>

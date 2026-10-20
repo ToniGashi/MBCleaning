@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef } from "react";
-import { navigation, siteConfig, telHref } from "@/lib/site";
+import { mailHref, navigation, siteConfig, telHref } from "@/lib/site";
 
 export function MobileMenu() {
   const pathname = usePathname();
@@ -27,6 +27,11 @@ export function MobileMenu() {
         {siteConfig.phone ? (
           <a className="mobile-menu-call" href={telHref()}>
             Call {siteConfig.phoneDisplay}
+          </a>
+        ) : null}
+        {siteConfig.email ? (
+          <a className="mobile-menu-email" href={mailHref()}>
+            Email {siteConfig.email}
           </a>
         ) : null}
       </nav>

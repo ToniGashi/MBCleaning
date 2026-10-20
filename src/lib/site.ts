@@ -58,23 +58,6 @@ export const navigation = [
   { href: "/contact", label: "Contact" },
 ] as const;
 
-export const inquiryPhases = [
-  { slug: "rough", label: "Rough clean" },
-  { slug: "final", label: "Final clean" },
-  { slug: "touch-up", label: "Touch-up clean" },
-  { slug: "more", label: "More than one" },
-  { slug: "unsure", label: "Not sure yet" },
-] as const;
-
-export function requestedCleanLabel(slug: string | undefined) {
-  const match = inquiryPhases.find(
-    (phase) =>
-      phase.slug === slug &&
-      (phase.slug === "rough" || phase.slug === "final" || phase.slug === "touch-up"),
-  );
-  return match?.label ?? "";
-}
-
 export const workPhotos = {
   kitchen: {
     src: "/images/work/kitchen-final-v2.webp",
@@ -182,11 +165,23 @@ export function absoluteUrl(path = "/") {
 }
 
 export function telHref() {
-  return siteConfig.phone ? `tel:${siteConfig.phone}` : "/contact#inquiry";
+  return siteConfig.phone ? `tel:${siteConfig.phone}` : "/contact#call";
 }
 
 export function smsHref(message = "Hi MB Cleaning, I’d like to discuss a construction cleaning project.") {
-  if (!siteConfig.phone) return "/contact#inquiry";
+  if (!siteConfig.phone) return "/contact#call";
   return `sms:${siteConfig.phone}?&body=${encodeURIComponent(message)}`;
+}
+
+export function mailHref(clean?: string) {
+  if (!siteConfig.email) return "/contact#email";
+  const subject = clean
+    ? `${clean} — South Carolina Lowcountry`
+    : "Construction cleaning — South Carolina Lowcountry";
+  const opening = clean
+    ? `We would like to discuss a ${clean.toLowerCase()} for homes in the South Carolina Lowcountry.`
+    : "We would like to discuss construction cleaning for homes in the South Carolina Lowcountry.";
+  const body = `Hello MB Cleaning,\n\n${opening}\n\nLocation, phase, and timing are helpful if you have them. Partial details are fine.\n\n`;
+  return `mailto:${siteConfig.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
