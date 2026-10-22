@@ -23,6 +23,7 @@ const imagesByPath: Record<string, string[]> = {
   "/": imageUrls([
     "/logo.png",
     workPhotos.kitchen.src,
+    workPhotos.kitchenFirst.src,
     workPhotos.rough.src,
     workPhotos.windows.src,
     ...featuredCommunityImages,

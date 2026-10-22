@@ -66,6 +66,10 @@ export const workPhotos = {
     src: "/images/work/kitchen-final-v2.webp",
     alt: "Illustration of a blue microfiber cloth and spray bottle on a quartz kitchen island during a final construction clean",
   },
+  kitchenFirst: {
+    src: "/images/work/kitchen-first-v3.webp",
+    alt: "Illustration of the same white quartz kitchen island covered in fine drywall dust at the first construction clean",
+  },
   film: {
     src: "/images/work/detail-film-v2.webp",
     alt: "Illustration of gloved hands peeling protective film off a new stainless steel appliance during construction cleaning",

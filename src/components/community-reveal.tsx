@@ -2,7 +2,13 @@
 
 import { useEffect, useRef } from "react";
 
-export function CommunityReveal({ children }: { children: React.ReactNode }) {
+export function CommunityReveal({
+  children,
+  className = "community-reveal",
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -27,6 +33,10 @@ export function CommunityReveal({ children }: { children: React.ReactNode }) {
     return () => observer.disconnect();
   }, []);
 
-  return <div className="community-reveal" ref={rootRef}>{children}</div>;
+  return (
+    <div className={className} ref={rootRef}>
+      {children}
+    </div>
+  );
 }
 

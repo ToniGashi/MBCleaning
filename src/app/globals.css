@@ -483,8 +483,30 @@ svg {
 .hero-frame::after {
   content: "";
   position: absolute;
+  z-index: 2;
   inset: 0;
   background: linear-gradient(180deg, rgb(9 29 32 / 0%) 55%, rgb(9 29 32 / 55%));
+  pointer-events: none;
+}
+
+.hero-rough {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  clip-path: inset(0 0 0 100%);
+  pointer-events: none;
+}
+
+.hero-clear-line {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background: var(--brass-light);
+  opacity: 0;
+  pointer-events: none;
 }
 
 @keyframes hero-settle {
@@ -495,7 +517,7 @@ svg {
 
 .hero-image-note {
   position: absolute;
-  z-index: 1;
+  z-index: 4;
   top: 16px;
   right: 16px;
   padding: 6px 9px;
@@ -605,6 +627,114 @@ svg {
   }
 }
 
+@media (prefers-reduced-motion: no-preference) and (min-width: 981px) {
+  .hero-rough {
+    animation: clear-rough 1.35s 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .hero-clear-line {
+    animation: clear-line 1.35s 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  }
+
+  .hero-checklist li[data-state="done"]:nth-child(1)::before {
+    animation: check-in 480ms 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .hero-checklist li[data-state="done"]:nth-child(2)::before {
+    animation: check-in 480ms 1.25s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .hero-checklist li[data-state="active"]::before {
+    animation: ring-in 420ms 1.85s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) and (max-width: 980px) {
+  .hero-visual:not(.is-playing) .hero-rough {
+    clip-path: inset(0 0 0 0);
+  }
+
+  .hero-visual:not(.is-playing) .hero-checklist li::before {
+    background: transparent;
+    box-shadow: inset 0 0 0 2px var(--line);
+  }
+
+  .hero-visual.is-playing .hero-rough {
+    animation: clear-rough 1.35s 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .hero-visual.is-playing .hero-clear-line {
+    animation: clear-line 1.35s 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  }
+
+  .hero-visual.is-playing .hero-checklist li[data-state="done"]:nth-child(1)::before {
+    animation: check-in 480ms 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .hero-visual.is-playing .hero-checklist li[data-state="done"]:nth-child(2)::before {
+    animation: check-in 480ms 1.25s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .hero-visual.is-playing .hero-checklist li[data-state="active"]::before {
+    animation: ring-in 420ms 1.85s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+}
+
+@keyframes clear-rough {
+  from {
+    clip-path: inset(0 0 0 0);
+  }
+
+  to {
+    clip-path: inset(0 0 0 100%);
+  }
+}
+
+@keyframes clear-line {
+  0% {
+    opacity: 1;
+    left: 0;
+  }
+
+  92% {
+    opacity: 1;
+    left: 100%;
+  }
+
+  100% {
+    opacity: 0;
+    left: 100%;
+  }
+}
+
+@keyframes check-in {
+  0%,
+  62% {
+    background: transparent;
+    box-shadow: inset 0 0 0 2px var(--line);
+  }
+
+  100% {
+    background:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='m6 10.2 2.6 2.6L14 7.4' fill='none' stroke='%23fffefa' stroke-width='2'/%3E%3C/svg%3E")
+        center / 100% no-repeat,
+      var(--green);
+    box-shadow: none;
+  }
+}
+
+@keyframes ring-in {
+  from {
+    background: transparent;
+    box-shadow: inset 0 0 0 2px var(--line);
+  }
+
+  to {
+    background: transparent;
+    box-shadow: inset 0 0 0 2px var(--brass);
+  }
+}
+
 .proof-bar {
   color: var(--white);
   background: var(--green);
@@ -696,6 +826,55 @@ svg {
 
 .phase-card:hover .phase-photo img {
   transform: scale(1.04);
+}
+
+.phase-photo::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--brass);
+  transform: scaleX(1);
+  transform-origin: left center;
+  pointer-events: none;
+}
+
+.phase-reveal.is-enhanced .phase-card[data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 560ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 560ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 260ms ease;
+  transition-delay: calc(var(--reveal-order, 0) * 90ms);
+}
+
+.phase-reveal.is-enhanced .phase-card[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.phase-reveal.is-enhanced .phase-card[data-reveal].is-visible:hover {
+  transform: translateY(-4px);
+}
+
+.phase-reveal.is-enhanced .phase-photo::after {
+  transform: scaleX(0);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .phase-photo::after {
+    transform: scaleX(0);
+  }
+}
+
+.phase-reveal.is-enhanced .phase-card.is-visible .phase-photo::after {
+  transform: scaleX(1);
+  transition: transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: calc(var(--reveal-order, 0) * 90ms + 120ms);
 }
 
 .phase-body {
@@ -975,7 +1154,7 @@ svg {
   border: 1px solid rgb(215 164 58 / 65%);
   box-shadow: 0 12px 28px rgb(0 0 0 / 28%);
   animation: process-step-in 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
-  animation-delay: calc(120ms + var(--step) * 90ms);
+  animation-delay: calc(200ms + var(--step) * 180ms);
 }
 
 .process-cycle-steps li:nth-child(1) {
@@ -1049,6 +1228,28 @@ svg {
 @keyframes process-orbit {
   to {
     transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .process-cycle-orbit {
+    animation:
+      orbit-draw 1.5s cubic-bezier(0.2, 0.7, 0.2, 1) both,
+      process-orbit 16s linear 1.5s infinite;
+  }
+}
+
+@keyframes orbit-draw {
+  from {
+    stroke-dasharray: 0 804.25;
+  }
+
+  80% {
+    stroke-dasharray: 804.25 0;
+  }
+
+  to {
+    stroke-dasharray: 16 12;
   }
 }
 

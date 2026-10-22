@@ -1,6 +1,9 @@
+import type { CSSProperties } from "react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { CommunityReveal } from "@/components/community-reveal";
+import { HeroReveal } from "@/components/hero-reveal";
 import { CommunityShowcase } from "@/components/community-showcase";
 import { Callout, ProofBar, SectionHeading, TextLink } from "@/components/content";
 import { ContactActions } from "@/components/site-chrome";
@@ -65,7 +68,7 @@ export default function Home() {
             <ContactActions />
             <p className="hero-note">Working with builders and superintendents across the Lowcountry.</p>
           </div>
-          <div className="hero-visual">
+          <HeroReveal>
             <div className="hero-frame">
               <Image
                 src={workPhotos.kitchen.src}
@@ -74,6 +77,16 @@ export default function Home() {
                 priority
                 sizes="(max-width: 980px) 100vw, 46vw"
               />
+              <div className="hero-rough" aria-hidden="true">
+                <Image
+                  src={workPhotos.kitchenFirst.src}
+                  alt=""
+                  fill
+                  priority
+                  sizes="(max-width: 980px) 100vw, 46vw"
+                />
+              </div>
+              <span className="hero-clear-line" aria-hidden="true" />
               <span className="hero-image-note">Illustration</span>
             </div>
             <div className="hero-checklist" aria-label="A typical home during walkthrough week">
@@ -91,7 +104,7 @@ export default function Home() {
               <strong>12+</strong>
               <span>Lowcountry communities</span>
             </div>
-          </div>
+          </HeroReveal>
         </div>
       </section>
 
@@ -104,29 +117,36 @@ export default function Home() {
             title="Three cleans, one finished home."
             body="Most new homes need us more than once. Here’s what each visit covers."
           />
-          <div className="phase-grid">
-            {phases.map((phase) => (
-              <article className="phase-card" key={phase.number}>
-                <div className="phase-photo">
-                  <Image
-                    src={phase.photo.src}
-                    alt={phase.photo.alt}
-                    fill
-                    sizes="(max-width: 980px) 100vw, 380px"
-                  />
-                </div>
-                <div className="phase-body">
-                  <span className="phase-number">{phase.number}</span>
-                  <h3>{phase.title}</h3>
-                  <p>{phase.body}</p>
-                  <div className="phase-actions">
-                    <TextLink href={phase.href}>What’s included in a {phase.title.toLowerCase()}</TextLink>
-                    <TextLink href={phase.requestHref}>Email about a {phase.title.toLowerCase()}</TextLink>
+          <CommunityReveal className="phase-reveal">
+            <div className="phase-grid">
+              {phases.map((phase, index) => (
+                <article
+                  className="phase-card"
+                  data-reveal
+                  key={phase.number}
+                  style={{ "--reveal-order": index } as CSSProperties}
+                >
+                  <div className="phase-photo">
+                    <Image
+                      src={phase.photo.src}
+                      alt={phase.photo.alt}
+                      fill
+                      sizes="(max-width: 980px) 100vw, 380px"
+                    />
                   </div>
-                </div>
-              </article>
-            ))}
-          </div>
+                  <div className="phase-body">
+                    <span className="phase-number">{phase.number}</span>
+                    <h3>{phase.title}</h3>
+                    <p>{phase.body}</p>
+                    <div className="phase-actions">
+                      <TextLink href={phase.href}>What’s included in a {phase.title.toLowerCase()}</TextLink>
+                      <TextLink href={phase.requestHref}>Email about a {phase.title.toLowerCase()}</TextLink>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </CommunityReveal>
         </div>
       </section>
 
