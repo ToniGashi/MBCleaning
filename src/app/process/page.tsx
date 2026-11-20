@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Callout, PageHero, ProcessCycle, TextLink } from "@/components/content";
-import { mailHref } from "@/lib/site";
+import { ContactActions } from "@/components/site-chrome";
+import { requestHref, requestLabel, workPhotos } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Our Construction Cleaning Process",
@@ -51,9 +52,20 @@ export default function ProcessPage() {
       <PageHero
         eyebrow="How it works"
         title="Easy to schedule. Easy to work with."
-        intro="Here’s what working with us looks like for Lowcountry builders, from your first call to the homeowner walkthrough."
-        media={<ProcessCycle />}
+        intro="Here’s what working with us looks like for Lowcountry builders, from your first call to the homeowner walkthrough. For same-week work, call or text with the community, lots, rough or final, and the date you need us."
+        image={workPhotos.entry}
+        actions={<ContactActions compact />}
       />
+      <section className="section process-cycle-section">
+        <div className="shell process-cycle-band">
+          <div>
+            <p className="eyebrow">The loop</p>
+            <h2>Call, schedule, clean, check.</h2>
+            <p>That’s the working rhythm with MB Cleaning on every new home.</p>
+          </div>
+          <ProcessCycle />
+        </div>
+      </section>
       <section className="section">
         <div className="shell content-grid">
           <div className="sticky-label">
@@ -79,9 +91,10 @@ export default function ProcessPage() {
             <p className="eyebrow">Getting a quote</p>
             <h2>What to have ready when you call.</h2>
             <p className="quote-prep-intro">
-              Don’t have all of it yet? That’s fine. Call anyway and we’ll figure it out together.
+              Don’t have all of it yet? That’s fine. Call or text anyway — for same-week work, include the
+              community, lots, rough or final, and the date you need us on site.
             </p>
-            <TextLink href={mailHref()}>Email the project</TextLink>
+            <TextLink href={requestHref()}>{requestLabel()}</TextLink>
           </div>
           <ul className="prep-list">
             {quoteDetails.map(([title, detail]) => (
@@ -96,9 +109,9 @@ export default function ProcessPage() {
         </div>
       </section>
       <Callout
-        eyebrow="Plan ahead"
-        title="Bring us in early."
-        body="A quick look at the site before your homes are ready helps us plan the right crew and catch problems before they slow you down."
+        eyebrow="Same-week or next"
+        title="Need a clean on the calendar?"
+        body="Call or text with the community, lots, rough or final, and the date. Same-week work is often possible when we hear early — and a quick site look before you’re ready helps us plan the crew."
       />
     </>
   );

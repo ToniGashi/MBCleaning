@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/content";
 import { ContactActions } from "@/components/site-chrome";
-import { mailHref, siteConfig, telHref } from "@/lib/site";
+import { mailHref, siteConfig, smsHref, telHref, workPhotos } from "@/lib/site";
+
+const hasEmail = Boolean(siteConfig.email);
+const hasPhone = Boolean(siteConfig.phone);
 
 export const metadata: Metadata = {
   title: "Contact",
-  description:
-    "Call or email MB Cleaning about construction cleaning in the South Carolina Lowcountry.",
+  description: hasEmail
+    ? "Call or email MB Cleaning about construction cleaning in the South Carolina Lowcountry."
+    : "Call or text MB Cleaning about construction cleaning in the South Carolina Lowcountry.",
   alternates: { canonical: "/contact" },
   openGraph: {
-    title: "Call or Email MB Cleaning",
-    description: "Two ways to reach us about construction cleaning in the South Carolina Lowcountry.",
+    title: hasEmail ? "Call or Email MB Cleaning" : "Call or Text MB Cleaning",
+    description: hasEmail
+      ? "Two ways to reach us about construction cleaning in the South Carolina Lowcountry."
+      : "Call or text us about construction cleaning in the South Carolina Lowcountry.",
     url: "/contact",
   },
 };
@@ -21,42 +27,66 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Contact"
         title="Let’s get your homes ready."
-        intro="Call or email us about construction cleaning across the South Carolina Lowcountry. Share the location and the phase if you have them. We’ll follow up."
+        intro={
+          hasEmail
+            ? "Call, text, or email us about construction cleaning across the South Carolina Lowcountry. Share the location and the phase if you have them. We’ll follow up."
+            : "Call or text us about construction cleaning across the South Carolina Lowcountry. Share the community, rough or final, and the date you need us — same-week work is often possible when we hear early."
+        }
+        image={workPhotos.film}
+        actions={<ContactActions compact />}
       />
       <section className="section">
         <div className="shell">
-          <div className="contact-methods">
+          <div className="contact-methods" data-single={!hasEmail || undefined}>
             <article className="contact-card" id="call">
-              <p className="eyebrow">Call</p>
+              <p className="eyebrow">Call or text</p>
               <h2>Talk to us directly.</h2>
-              <p>The fastest way to reach us. Tell us where the job is and what you need, and we’ll talk it through.</p>
-              {siteConfig.phone ? (
+              <p>
+                The fastest way to get on the schedule. Tell us the community or address, how many
+                homes, rough or final, and the date you need us on site.
+              </p>
+              {hasPhone ? (
                 <a className="contact-number" href={telHref()}>
                   {siteConfig.phoneDisplay}
                 </a>
               ) : null}
               <ContactActions compact />
+              {hasPhone ? (
+                <p className="contact-hint">
+                  Prefer text?{" "}
+                  <a className="text-link" href={smsHref()}>
+                    Open a text with the details we need
+                  </a>
+                  .
+                </p>
+              ) : null}
             </article>
-            <article className="contact-card contact-card-email" id="email">
-              <p className="eyebrow">Email</p>
-              <h2>Email the project.</h2>
-              <p>Send the location, the phase, and the timing if you have them. Partial details are fine. We’ll follow up.</p>
-              {siteConfig.email ? (
+            {hasEmail ? (
+              <article className="contact-card contact-card-email" id="email">
+                <p className="eyebrow">Email</p>
+                <h2>Email the project.</h2>
+                <p>
+                  Send the location, the phase, and the timing if you have them. Partial details are
+                  fine. We’ll follow up.
+                </p>
                 <a className="contact-number" href={mailHref()}>
                   {siteConfig.email}
                 </a>
-              ) : null}
-              <div className="contact-actions">
-                <a className="button button-primary" href={mailHref()}>
-                  <MailIcon />
-                  Email MB Cleaning
-                </a>
-              </div>
-            </article>
+                <div className="contact-actions">
+                  <a className="button button-primary" href={mailHref()}>
+                    <MailIcon />
+                    Email MB Cleaning
+                  </a>
+                </div>
+              </article>
+            ) : null}
           </div>
           <div className="note-box">
             <strong>Where we work</strong>
-            <p>The entire South Carolina Lowcountry. Charleston and Summerville are our home bases, and we serve the surrounding Lowcountry as well.</p>
+            <p>
+              The entire South Carolina Lowcountry. Charleston and Summerville are our home bases,
+              and we serve the surrounding Lowcountry as well.
+            </p>
           </div>
         </div>
       </section>

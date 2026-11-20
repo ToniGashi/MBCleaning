@@ -61,14 +61,24 @@ export function Footer() {
           <p className="footer-statement">
             {siteConfig.ownership} Construction cleaning for new homes across the {siteConfig.region}.
           </p>
+          <ContactActions compact />
         </div>
         <div>
           <p className="eyebrow">Navigate</p>
           <SiteNav label="Footer navigation" className="footer-links" />
         </div>
         <div>
-          <p className="eyebrow">Service area</p>
-          <p>Construction cleaning across the entire South Carolina Lowcountry.</p>
+          <p className="eyebrow">Call or text</p>
+          {siteConfig.phone ? (
+            <>
+              <a className="footer-phone" href={telHref()}>
+                {siteConfig.phoneDisplay}
+              </a>
+              <p>Same-week cleans are often possible when we hear early. Text the community, lots, and date.</p>
+            </>
+          ) : (
+            <p>Construction cleaning across the entire South Carolina Lowcountry.</p>
+          )}
           <p>Charleston and Summerville are our home bases.</p>
           <Link className="text-link light" href="/service-area">
             View coverage <ArrowIcon />

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Callout, PageHero, SectionHeading } from "@/components/content";
+import { ContactActions } from "@/components/site-chrome";
 import { siteConfig, workPhotos } from "@/lib/site";
 
 const description = `${siteConfig.ownership} Construction cleaning for builders in the ${siteConfig.region}.`;
@@ -31,6 +32,7 @@ export default function AboutPage() {
         title="Owned by American women, and proud of the work."
         intro={`${siteConfig.ownership} We clean new homes for builders across the ${siteConfig.region}.`}
         image={workPhotos.entry}
+        actions={<ContactActions compact />}
       />
       <section className="section">
         <div className="shell split-section">

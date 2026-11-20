@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Callout, PageHero, TextLink } from "@/components/content";
 import { ServiceJsonLd } from "@/components/json-ld";
-import { mailHref, workPhotos } from "@/lib/site";
+import { ContactActions } from "@/components/site-chrome";
+import { requestHref, requestLabel, workPhotos } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "New Construction Cleaning",
@@ -76,6 +77,7 @@ export default function ServicesPage() {
         title="Three cleans, from dusty to move-in ready."
         intro="Every new home in the Lowcountry goes through stages, and we clean at each one. We’re clear about what’s included, so there’s never any guessing."
         image={workPhotos.film}
+        actions={<ContactActions compact />}
       />
       <section className="section">
         <div className="shell content-grid">
@@ -109,7 +111,7 @@ export default function ServicesPage() {
                     {service.items.map((item) => <li key={item}>{item}</li>)}
                   </ul>
                   <div className="service-request">
-                    <TextLink href={mailHref(service.title)}>Email about a {service.title.toLowerCase()}</TextLink>
+                    <TextLink href={requestHref(service.title)}>{requestLabel(service.title)}</TextLink>
                   </div>
                 </div>
               </article>
@@ -128,7 +130,7 @@ export default function ServicesPage() {
       <Callout
         eyebrow="Get a quote"
         title="Tell us about your homes."
-        body="How many homes, which clean you need, and when they’ll be ready. That’s all we need to get started."
+        body="Text or call with how many homes, rough or final, and the date you need us. Same-week scheduling is often possible when we hear early."
       />
     </>
   );

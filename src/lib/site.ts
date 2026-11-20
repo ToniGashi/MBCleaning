@@ -17,39 +17,39 @@ export const siteConfig = {
 export const serviceAreas = [
   {
     name: "Charleston",
-    summary: "One of our home bases, with work in new communities across the area, including Carolina Bay.",
+    summary: "Home base. Regular work in communities like Carolina Bay.",
   },
   {
     name: "Summerville",
-    summary: "Our other home base, including Wisteria at Cane Bay and The Meadows.",
+    summary: "Home base. Wisteria at Cane Bay, The Meadows, and nearby builds.",
   },
   {
     name: "North Charleston",
-    summary: "New construction in the area, including Coosaw Creek.",
+    summary: "Including Coosaw Creek and surrounding new construction.",
   },
   {
     name: "Goose Creek",
-    summary: "New homes in the area, including The Landings at Montague.",
+    summary: "Including The Landings at Montague.",
   },
   {
     name: "Moncks Corner",
-    summary: "New construction in the area, including Oakley Pointe and Strawberry Lane.",
+    summary: "Oakley Pointe, Strawberry Lane, and jobs nearby.",
   },
   {
     name: "Ridgeville",
-    summary: "New communities in the area, including Parker’s Preserve and Timothy Lakes.",
+    summary: "Parker’s Preserve, Timothy Lakes, and growing communities.",
   },
   {
     name: "Johns Island",
-    summary: "New homes in the area, including Swygerts Landing.",
+    summary: "Including Swygerts Landing.",
   },
   {
     name: "Ladson",
-    summary: "New homes in the area, including Grand Oaks Preserve.",
+    summary: "Including Grand Oaks Preserve.",
   },
   {
     name: "Daniel Island",
-    summary: "New homes in the area, including Nowell.",
+    summary: "Including Nowell.",
   },
 ] as const;
 
@@ -187,13 +187,14 @@ export function telHref() {
   return siteConfig.phone ? `tel:${siteConfig.phone}` : "/contact#call";
 }
 
-export function smsHref(message = "Hi MB Cleaning, I’d like to discuss a construction cleaning project.") {
+export function smsHref(
+  message = "Hi MB Cleaning — need construction cleaning. Community/address, rough or final, and the date we need you:",
+) {
   if (!siteConfig.phone) return "/contact#call";
   return `sms:${siteConfig.phone}?body=${encodeURIComponent(message)}`;
 }
 
-export function mailHref(clean?: string) {
-  if (!siteConfig.email) return "/contact#email";
+function mailtoHref(clean?: string): string {
   const subject = clean
     ? `${clean} — South Carolina Lowcountry`
     : "Construction cleaning — South Carolina Lowcountry";
@@ -202,5 +203,35 @@ export function mailHref(clean?: string) {
     : "We would like to discuss construction cleaning for homes in the South Carolina Lowcountry.";
   const body = `Hello MB Cleaning,\n\n${opening}\n\nLocation, phase, and timing are helpful if you have them. Partial details are fine.\n\n`;
   return `mailto:${siteConfig.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+function textRequestHref(clean?: string): string {
+  if (!siteConfig.phone) return "/contact#call";
+  const focus = clean ? `a ${clean.toLowerCase()}` : "construction cleaning";
+  return smsHref(
+    `Hi MB Cleaning — need ${focus}. Community/address, how many homes or lots, and the date we need you:`,
+  );
+}
+
+export function mailHref(clean?: string): string {
+  // Owner has not published an email yet — never link to a dead #email anchor.
+  if (!siteConfig.email) return textRequestHref(clean);
+  return mailtoHref(clean);
+}
+
+/** Prefer email when configured; otherwise text (or call) so CTAs never dead-end. */
+export function requestHref(clean?: string): string {
+  if (siteConfig.email) return mailtoHref(clean);
+  return textRequestHref(clean);
+}
+
+export function requestLabel(clean?: string) {
+  if (siteConfig.email) {
+    return clean ? `Email about a ${clean.toLowerCase()}` : "Email the project";
+  }
+  if (siteConfig.phone) {
+    return clean ? `Text about a ${clean.toLowerCase()}` : "Text the project details";
+  }
+  return "Contact us";
 }
 

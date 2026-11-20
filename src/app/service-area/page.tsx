@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CommunityShowcase } from "@/components/community-showcase";
 import { Callout, PageHero, SectionHeading } from "@/components/content";
+import { ContactActions } from "@/components/site-chrome";
 import { serviceAreas, workPhotos } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -23,13 +24,14 @@ export default function ServiceAreaPage() {
         title="Construction cleaning across the South Carolina Lowcountry."
         intro="We clean new homes for builders across the entire South Carolina Lowcountry. Charleston and Summerville are our home bases."
         image={workPhotos.windows}
+        actions={<ContactActions compact />}
       />
       <section className="section">
         <div className="shell">
           <SectionHeading
-            eyebrow="Communities we know"
+            eyebrow="Towns we already know"
             title="Where we work."
-            body="We serve the entire South Carolina Lowcountry. The towns below are communities we have already worked in."
+            body="We serve the entire South Carolina Lowcountry. These are towns where we’ve already cleaned new homes."
           />
           <div className="area-list">
             {serviceAreas.map((area) => (

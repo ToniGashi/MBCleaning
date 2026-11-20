@@ -9,12 +9,14 @@ export function PageHero({
   intro,
   image,
   media,
+  actions,
 }: {
   eyebrow: string;
   title: string;
   intro: string;
   image?: { src: string; alt: string };
   media?: ReactNode;
+  actions?: ReactNode;
 }) {
   const hasMedia = Boolean(media) || Boolean(image);
 
@@ -22,9 +24,11 @@ export function PageHero({
     <section className="page-hero" data-has-image={hasMedia} data-media={media ? "graphic" : undefined}>
       <div className="shell page-hero-grid">
         <div>
+          <p className="page-brand">MB Cleaning</p>
           <p className="eyebrow">{eyebrow}</p>
           <h1>{title}</h1>
           <p className="page-intro">{intro}</p>
+          {actions ? <div className="page-hero-actions">{actions}</div> : null}
         </div>
         {media ? (
           <div className="page-hero-media page-hero-media-graphic">{media}</div>
@@ -79,7 +83,7 @@ export function ProofBar() {
       <div className="shell proof-grid">
         <p><strong>01</strong> Rough, final &amp; touch-up</p>
         <p><strong>02</strong> Built around your schedule</p>
-        <p><strong>03</strong> One person to call</p>
+        <p><strong>03</strong> 12+ Lowcountry communities</p>
         <p><strong>04</strong> Ready for the walkthrough</p>
       </div>
     </aside>
@@ -89,7 +93,7 @@ export function ProofBar() {
 export function Callout({
   eyebrow = "Let’s talk",
   title = "Got homes coming up?",
-  body = "Call or text us with where the job is and when the homes will be ready. We’ll take it from there.",
+  body = "Call or text the community, how many homes, rough or final, and the date you need us. Same-week work is often possible when we hear from you early in the week.",
 }: {
   eyebrow?: string;
   title?: string;
@@ -114,9 +118,23 @@ export function Callout({
 }
 
 export function TextLink({ href, children }: { href: string; children: React.ReactNode }) {
+  const content = (
+    <>
+      {children} <ArrowIcon />
+    </>
+  );
+
+  if (/^(tel|sms|mailto):/i.test(href)) {
+    return (
+      <a className="text-link" href={href}>
+        {content}
+      </a>
+    );
+  }
+
   return (
     <Link className="text-link" href={href}>
-      {children} <ArrowIcon />
+      {content}
     </Link>
   );
 }

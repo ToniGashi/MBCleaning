@@ -7,7 +7,7 @@ import { HeroReveal } from "@/components/hero-reveal";
 import { CommunityShowcase } from "@/components/community-showcase";
 import { Callout, ProofBar, SectionHeading, TextLink } from "@/components/content";
 import { ContactActions } from "@/components/site-chrome";
-import { mailHref, siteConfig, workPhotos } from "@/lib/site";
+import { requestHref, requestLabel, siteConfig, workPhotos } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: { absolute: siteConfig.title },
@@ -27,7 +27,7 @@ const phases = [
     title: "Rough clean",
     body: "Once drywall and trim are in, we clear out the dust and debris so finish work can start clean.",
     href: "/services#rough",
-    requestHref: mailHref("Rough clean"),
+    requestHref: requestHref("Rough clean"),
     photo: workPhotos.rough,
   },
   {
@@ -35,7 +35,7 @@ const phases = [
     title: "Final clean",
     body: "The detailed clean before inspection and closing: counters, cabinets, glass, fixtures, and floors.",
     href: "/services#final",
-    requestHref: mailHref("Final clean"),
+    requestHref: requestHref("Final clean"),
     photo: workPhotos.kitchen,
   },
   {
@@ -43,7 +43,7 @@ const phases = [
     title: "Touch-up clean",
     body: "After punch-list repairs, we come back for the dust and smudges so the home looks right on walkthrough day.",
     href: "/services#touch-up",
-    requestHref: mailHref("Touch-up clean"),
+    requestHref: requestHref("Touch-up clean"),
     photo: workPhotos.windows,
   },
 ];
@@ -54,11 +54,9 @@ export default function Home() {
       <section className="hero">
         <div className="shell hero-grid">
           <div className="hero-copy">
-            <p className="eyebrow">Charleston · Summerville · <span className="nowrap">American-women-owned</span></p>
-            <h1>
-              New homes,
-              <span> cleaned and ready.</span>
-            </h1>
+            <p className="hero-brand">MB Cleaning</p>
+            <p className="eyebrow">Construction cleaning for Lowcountry builders</p>
+            <h1>New homes, cleaned and ready.</h1>
             <p className="hero-intro">
               {siteConfig.ownership} We clean new construction for builders
               across the <Link href="/service-area">South Carolina Lowcountry</Link>, from Charleston
@@ -66,7 +64,7 @@ export default function Home() {
               touch-up before your buyers walk in.
             </p>
             <ContactActions />
-            <p className="hero-note">Working with builders and superintendents across the Lowcountry.</p>
+            <p className="hero-note">Call or text for same-week work when you can tell us early.</p>
           </div>
           <HeroReveal>
             <div className="hero-frame">
@@ -91,18 +89,14 @@ export default function Home() {
             </div>
             <div className="hero-checklist" aria-label="A typical home during walkthrough week">
               <p className="hero-checklist-title">
-                <span>A typical home</span>
                 <span>Walkthrough week</span>
+                <span>Typical home</span>
               </p>
               <ul>
                 <li data-state="done">Rough clean</li>
                 <li data-state="done">Final clean</li>
                 <li data-state="active">Touch-up before walkthrough</li>
               </ul>
-            </div>
-            <div className="hero-badge">
-              <strong>12+</strong>
-              <span>Lowcountry communities</span>
             </div>
           </HeroReveal>
         </div>
@@ -140,7 +134,7 @@ export default function Home() {
                     <p>{phase.body}</p>
                     <div className="phase-actions">
                       <TextLink href={phase.href}>What’s included in a {phase.title.toLowerCase()}</TextLink>
-                      <TextLink href={phase.requestHref}>Email about a {phase.title.toLowerCase()}</TextLink>
+                      <TextLink href={phase.requestHref}>{requestLabel(phase.title)}</TextLink>
                     </div>
                   </div>
                 </article>
