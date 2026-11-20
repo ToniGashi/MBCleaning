@@ -22,7 +22,7 @@ export function HeroReveal({ children }: { children: React.ReactNode }) {
     );
 
     observer.observe(photo);
-    return () => observer.disconnect();
+    return () => { observer.disconnect(); };
   }, []);
 
   return (

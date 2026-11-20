@@ -29,8 +29,8 @@ export function CommunityReveal({
       { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
     );
 
-    items.forEach((item) => observer.observe(item));
-    return () => observer.disconnect();
+    items.forEach((item) => { observer.observe(item); });
+    return () => { observer.disconnect(); };
   }, []);
 
   return (

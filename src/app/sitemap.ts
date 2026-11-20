@@ -19,7 +19,7 @@ const featuredCommunityImages = projectCommunities
   .filter((community) => community.featured)
   .map((community) => community.image);
 
-const imagesByPath: Record<string, string[]> = {
+const imagesByPath: Partial<Record<string, string[]>> = {
   "/": imageUrls([
     "/logo.png",
     workPhotos.kitchen.src,

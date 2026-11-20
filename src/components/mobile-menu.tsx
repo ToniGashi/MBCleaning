@@ -10,16 +10,16 @@ export function MobileMenu() {
   const menuRef = useRef<HTMLDetailsElement>(null);
   const [open, setOpen] = useState(false);
 
+  // Closing the details element fires onToggle, which resets `open`.
   useEffect(() => {
     menuRef.current?.removeAttribute("open");
-    setOpen(false);
   }, [pathname]);
 
   return (
     <details
       className="mobile-menu"
       ref={menuRef}
-      onToggle={(event) => setOpen(event.currentTarget.open)}
+      onToggle={(event) => { setOpen(event.currentTarget.open); }}
     >
       <summary aria-label={open ? "Close menu" : "Open menu"}>
         <span aria-hidden="true" />

@@ -3,9 +3,9 @@ import { CommunityReveal } from "./community-reveal";
 import { TextLink } from "./content";
 import { projectCommunities } from "@/lib/site";
 
-type CommunityShowcaseProps = {
+interface CommunityShowcaseProps {
   variant: "home" | "full";
-};
+}
 
 export function CommunityShowcase({ variant }: CommunityShowcaseProps) {
   const communities =

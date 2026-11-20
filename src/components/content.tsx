@@ -16,7 +16,7 @@ export function PageHero({
   image?: { src: string; alt: string };
   media?: ReactNode;
 }) {
-  const hasMedia = Boolean(media || image);
+  const hasMedia = Boolean(media) || Boolean(image);
 
   return (
     <section className="page-hero" data-has-image={hasMedia} data-media={media ? "graphic" : undefined}>

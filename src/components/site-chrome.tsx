@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { siteConfig, smsHref, telHref } from "@/lib/site";
 import { MobileMenu } from "./mobile-menu";
@@ -6,7 +7,7 @@ import { SiteNav } from "./primary-nav";
 export function BrandMark({ inverted = false }: { inverted?: boolean }) {
   return (
     <Link className="brand-mark" data-inverted={inverted} href="/">
-      <img className="brand-logo" src="/logo.png" alt="" width={58} height={58} />
+      <Image className="brand-logo" src="/logo.png" alt="" width={58} height={58} loading="eager" />
       <span className="brand-name">
         <strong>{siteConfig.name}</strong>
         <small>{siteConfig.descriptor}</small>

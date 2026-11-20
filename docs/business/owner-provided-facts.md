@@ -2,7 +2,7 @@
 
 This is the permanent source of truth for information supplied directly by MB Cleaning’s owner. Update this file whenever the owner provides a new business fact. Do not replace owner-provided facts with assumptions or unrelated online listings.
 
-Last updated: October 20, 2026
+Last updated: November 17, 2026
 
 ## Business identity
 
@@ -54,6 +54,24 @@ Last updated: October 20, 2026
 - The owner called out the Process page “A stronger start / What helps us price and schedule
   accurately” section as looking “super weird.” It was replaced with a plain “What to have ready
   when you call” checklist.
+
+## Operations
+
+- Day-plan starting place (November 17, 2026): The owner asked to optimize day routes from **119 Grand Oaks, Ladson, SC**. Original wording: “starting place: 119 Grand Oaks, Ladson, SC.”
+- Day-route distance rule (November 19, 2026): The order of a day's stops must keep the total
+  distance travelled as small as possible, not just pick the nearest next stop. Original wording:
+  “please remember that the total distance travelled must be minimal between the destinations.”
+  Implemented in `office/src/lib/shortest-route.ts` (exact for up to 16 communities a day).
+- Invoices per job (November 19, 2026): The builders want one invoice per job, where a job is one
+  cleaning of one lot (for example Lot 8A, second clean). Each job gets its own invoice number and
+  is paid or voided on its own. Original wording: “The builders want their invoices per job.” A
+  draft with several lots is sent as one invoice per lot, and they print together one per page.
+- Invoices priced by square foot (November 19, 2026): An invoice needs the square footage and the
+  price per square foot, and the total is calculated from them. Original wording: “an invoice will
+  require square footage and price per square foot and then calculate total.” Asked how to set it
+  up, the owner said: “remove the prices from builders. Keep the price per square foot at community
+  level.” Square footage is remembered per lot, the price per square foot is in whole cents, and the
+  total rounds to the nearest cent.
 
 ## Customer and project experience
 
